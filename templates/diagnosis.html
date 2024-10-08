@@ -16,7 +16,7 @@
             padding: 50px;
             text-align: center;
         }
-        input {
+        input, select {
             padding: 10px;
             margin: 10px;
             width: 300px;
@@ -42,11 +42,22 @@
     <div class="container">
         <h1>Enter Your Details</h1>
         <form id="diagnosisForm">
-            <input type="text" id="MMSE" placeholder="MMSE Score" required><br>
-            <input type="text" id="FunctionalAssessment" placeholder="Functional Assessment Score" required><br>
-            <input type="text" id="MemoryComplaints" placeholder="Memory Complaints Score" required><br>
-            <input type="text" id="BehavioralProblems" placeholder="Behavioral Problems Score" required><br>
-            <input type="text" id="ADL" placeholder="ADL Score" required><br>
+            <input type="number" id="MMSE" placeholder="MMSE Score (0-30)" required min="0" max="30"><br>
+            <input type="number" id="FunctionalAssessment" placeholder="Functional Assessment Score (0-10)" required min="0" max="10"><br>
+            <input type="number" id="ADL" placeholder="ADL Score (0-10)" required min="0" max="10"><br>
+
+            <select id="MemoryComplaints" required>
+                <option value="">Memory Complaints</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br>
+
+            <select id="BehavioralProblems" required>
+                <option value="">Behavioral Problems</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select><br>
+
             <div class="button" onclick="submitForm()">Diagnose</div>
         </form>
         <div class="result" id="result"></div>
@@ -58,9 +69,9 @@
             const data = {
                 MMSE: parseFloat(document.getElementById('MMSE').value),
                 FunctionalAssessment: parseFloat(document.getElementById('FunctionalAssessment').value),
-                MemoryComplaints: parseFloat(document.getElementById('MemoryComplaints').value),
-                BehavioralProblems: parseFloat(document.getElementById('BehavioralProblems').value),
-                ADL: parseFloat(document.getElementById('ADL').value)
+                ADL: parseFloat(document.getElementById('ADL').value),
+                MemoryComplaints: document.getElementById('MemoryComplaints').value,
+                BehavioralProblems: document.getElementById('BehavioralProblems').value
             };
 
             // Send data to Flask API
