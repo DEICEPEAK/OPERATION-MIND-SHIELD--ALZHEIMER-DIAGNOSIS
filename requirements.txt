@@ -105,3 +105,4 @@ mccabe
 numpy== 1.24.4
 pandas
 scikit-learn == 1.2.2
+catboost
