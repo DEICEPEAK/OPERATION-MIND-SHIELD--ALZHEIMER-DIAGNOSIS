@@ -69,7 +69,7 @@ def Alzhiemer():
     result = return_prediction(model, scaler, content)
 
     # Placeholder for ChatGPT integration (to be added later)
-    #recommendations = "Recommendations will be added later via ChatGPT."
+    recommendations = "Coming soon!."
 
     return jsonify({'diagnosis': result, 'recommendations': recommendations})
 
