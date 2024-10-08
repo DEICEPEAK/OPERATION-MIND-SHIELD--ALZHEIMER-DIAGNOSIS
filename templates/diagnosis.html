@@ -35,6 +35,7 @@
         .result {
             margin-top: 20px;
             font-size: 1.4em;
+            color: red;
         }
     </style>
 </head>
@@ -84,9 +85,16 @@
             })
             .then(response => response.json())
             .then(result => {
-                document.getElementById('result').innerHTML = 'Diagnosis: ' + result.diagnosis + '<br>Recommendations: ' + result.recommendations;
+                if (result.error) {
+                    document.getElementById('result').style.color = "red";
+                    document.getElementById('result').innerHTML = 'Error: ' + result.error;
+                } else {
+                    document.getElementById('result').style.color = "green";
+                    document.getElementById('result').innerHTML = 'Diagnosis: ' + result.diagnosis + '<br>Recommendations: ' + result.recommendations;
+                }
             })
             .catch(error => {
+                document.getElementById('result').style.color = "red";
                 document.getElementById('result').innerHTML = 'Error: ' + error;
             });
         }

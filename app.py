@@ -11,7 +11,7 @@ def validate_input(data):
     if missing_fields:
         return False, f"Missing fields: {', '.join(missing_fields)}"
 
-    # Ensure numeric fields are within range
+    # Ensure numeric fields are within the valid range
     if not (0 <= data['MMSE'] <= 30):
         return False, "MMSE score should be between 0 and 30."
     if not (0 <= data['FunctionalAssessment'] <= 10):
@@ -80,10 +80,7 @@ def Alzhiemer():
     # Get prediction result
     result = return_prediction(model, scaler, content)
 
-    # Placeholder for ChatGPT integration (to be added later)
-    recommendations = "Coming soon!."
-
-    return jsonify({'diagnosis': result, 'recommendations': recommendations})
+    return jsonify({'diagnosis': result, 'recommendations': "Coming soon!"})
 
 
 if __name__ == '__main__':
